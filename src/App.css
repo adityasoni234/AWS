@@ -1,38 +1,218 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #FFFFFF;
+  color: #232F3E;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  width: 100%;
   min-height: 100vh;
+  position: relative;
+  background: #FFFFFF;
+}
+
+.main-content {
+  width: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF9900, #FFB84D);
+  border-radius: 10px;
+  border: 2px solid #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFB84D, #FF9900);
+}
+
+/* Text Selection */
+::selection {
+  background: linear-gradient(135deg, #FF9900, #FFB84D);
+  color: #FFFFFF;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #FF9900 0%, #FFB84D 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.App-link {
-  color: #61dafb;
+.scroll-to-top::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(135deg, #FF9900, #FFB84D);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(15px);
 }
 
-@keyframes App-logo-spin {
+.scroll-to-top:hover::before {
+  opacity: 0.6;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 15px 40px rgba(255, 153, 0, 0.5);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Global Animations */
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Smooth transitions */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Focus styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(255, 153, 0, 0.5);
+  outline-offset: 3px;
+}
+
+/* Prevent text selection on buttons */
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Link styles */
+a {
+  color: #FF9900;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFB84D;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    width: 50px;
+    height: 50px;
+    bottom: 25px;
+    right: 25px;
+    font-size: 20px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
