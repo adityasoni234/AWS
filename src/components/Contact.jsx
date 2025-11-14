@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import './Contact.css';
 
 const Contact = () => {
@@ -8,79 +9,77 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-
   const [formStatus, setFormStatus] = useState('');
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Simulate form submission
     setFormStatus('sending');
-    
     setTimeout(() => {
       setFormStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      setTimeout(() => {
-        setFormStatus('');
-      }, 3000);
+      setTimeout(() => setFormStatus(''), 3000);
     }, 1500);
   };
 
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
-        <div className="contact-header">
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="title-underline"></div>
-          <p className="section-subtitle">We'd love to hear from you</p>
-        </div>
+        <motion.div
+          className="contact-header"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="section-title">GET IN TOUCH</h2>
+          <div className="title-line"></div>
+          <p className="section-subtitle">Let's start a conversation</p>
+        </motion.div>
 
         <div className="contact-content">
-          <div className="contact-info">
-            <div className="info-card">
-              <div className="info-icon">📍</div>
-              <h3>Our Location</h3>
-              <p>123 Business Street</p>
-              <p>Tech City, TC 12345</p>
-            </div>
+          <motion.div
+            className="contact-info"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {[
+              { icon: '📍', title: 'Location', info: ['123 Tech Street', 'Silicon Valley, CA'] },
+              { icon: '📧', title: 'Email', info: ['info@aws-tech.com', 'support@aws-tech.com'] },
+              { icon: '📱', title: 'Phone', info: ['+1 (234) 567-8900', '+1 (234) 567-8901'] },
+              { icon: '🕐', title: 'Hours', info: ['Mon - Fri: 9AM - 6PM', 'Sat - Sun: Closed'] }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="info-card"
+                whileHover={{ x: 10, boxShadow: "0 0 30px rgba(139, 92, 246, 0.4)" }}
+              >
+                <div className="info-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                {item.info.map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <div className="info-card">
-              <div className="info-icon">📧</div>
-              <h3>Email Us</h3>
-              <p>info@aws-website.com</p>
-              <p>support@aws-website.com</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">📱</div>
-              <h3>Call Us</h3>
-              <p>+1 (234) 567-8900</p>
-              <p>+1 (234) 567-8901</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">🕐</div>
-              <h3>Working Hours</h3>
-              <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
-              <p>Sat - Sun: Closed</p>
-            </div>
-          </div>
-
-          <div className="contact-form-wrapper">
+          <motion.div
+            className="contact-form-wrapper"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Your Name</label>
+                <label>Your Name</label>
                 <input
                   type="text"
-                  id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -90,10 +89,9 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Your Email</label>
+                <label>Your Email</label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -103,10 +101,9 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
+                <label>Subject</label>
                 <input
                   type="text"
-                  id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
@@ -116,9 +113,8 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label>Message</label>
                 <textarea
-                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -128,23 +124,29 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
+              <motion.button
+                type="submit"
                 className={`submit-btn ${formStatus}`}
                 disabled={formStatus === 'sending'}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {formStatus === 'sending' && 'Sending...'}
-                {formStatus === 'success' && '✓ Message Sent!'}
-                {!formStatus && 'Send Message'}
-              </button>
+                {formStatus === 'sending' && 'SENDING...'}
+                {formStatus === 'success' && '✓ MESSAGE SENT!'}
+                {!formStatus && 'SEND MESSAGE'}
+              </motion.button>
             </form>
 
             {formStatus === 'success' && (
-              <div className="success-message">
+              <motion.div
+                className="success-message"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
                 Thank you! We'll get back to you soon.
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

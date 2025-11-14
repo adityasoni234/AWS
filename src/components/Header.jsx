@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,30 +26,51 @@ const Header = () => {
     }
   };
 
+  const navItems = ['home', 'about', 'calendar', 'contact'];
+
   return (
-    <header className="header">
+    <motion.header
+      className={`header ${scrolled ? 'scrolled' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="header-container">
-        <div className="logo" onClick={() => scrollToSection('home')}>
-          <span className="logo-aws">AWS</span>
-          <span className="logo-text">Website</span>
-        </div>
+        <motion.div
+          className="logo"
+          onClick={() => scrollToSection('home')}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="logo-text">AWS</span>
+          <div className="logo-glow"></div>
+        </motion.div>
 
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
           <ul className="nav-list">
-            <li onClick={() => scrollToSection('home')}>Home</li>
-            <li onClick={() => scrollToSection('about')}>About</li>
-            <li onClick={() => scrollToSection('calendar')}>Events</li>
-            <li onClick={() => scrollToSection('contact')}>Contact</li>
+            {navItems.map((item, index) => (
+              <motion.li
+                key={item}
+                onClick={() => scrollToSection(item)}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.1, textShadow: "0 0 8px #8B5CF6" }}
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+                <div className="nav-underline"></div>
+              </motion.li>
+            ))}
           </ul>
         </nav>
 
-        <div className="hamburger" onClick={toggleMenu}>
-          <span className={isMenuOpen ? 'active' : ''}></span>
-          <span className={isMenuOpen ? 'active' : ''}></span>
-          <span className={isMenuOpen ? 'active' : ''}></span>
+        <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

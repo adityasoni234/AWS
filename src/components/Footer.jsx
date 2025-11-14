@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './Footer.css';
 
 const Footer = () => {
@@ -7,42 +8,70 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="footer-section">
-          <h3 className="footer-title">AWS Website</h3>
-          <p className="footer-description">
-            Building amazing experiences with cutting-edge technology.
-          </p>
-        </div>
+        <motion.div
+          className="footer-section"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="footer-title">AWS</h3>
+          <p>Building the future with AI-powered solutions</p>
+        </motion.div>
 
-        <div className="footer-section">
+        <motion.div
+          className="footer-section"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
           <h4>Quick Links</h4>
-          <ul className="footer-links">
+          <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#calendar">Events</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-        </div>
+        </motion.div>
 
-        <div className="footer-section">
+        <motion.div
+          className="footer-section"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
           <h4>Connect</h4>
           <div className="social-links">
-            <a href="#" className="social-icon">FB</a>
-            <a href="#" className="social-icon">TW</a>
-            <a href="#" className="social-icon">IN</a>
-            <a href="#" className="social-icon">LI</a>
+            {['TW', 'LI', 'GH', 'FB'].map((social, index) => (
+              <motion.a
+                key={social}
+                href="#"
+                className="social-icon"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {social}
+              </motion.a>
+            ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="footer-section">
-          <h4>Contact Info</h4>
-          <p>Email: info@aws-website.com</p>
-          <p>Phone: +1 234 567 890</p>
-        </div>
+        <motion.div
+          className="footer-section"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <h4>Contact</h4>
+          <p>info@aws-tech.com</p>
+          <p>+1 234 567 890</p>
+        </motion.div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {currentYear} AWS Website. All rights reserved.</p>
+        <p>&copy; {currentYear} AWS Technology. All rights reserved.</p>
       </div>
     </footer>
   );
