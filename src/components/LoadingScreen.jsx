@@ -6,17 +6,17 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Progress animation
+    // Fast progress animation
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => onLoadingComplete(), 500);
+          setTimeout(() => onLoadingComplete(), 300);
           return 100;
         }
-        return prev + 2;
+        return prev + 5; // Increased from 2 to 5 for faster progress
       });
-    }, 30);
+    }, 20); // Reduced from 30 to 20 for faster updates
 
     return () => clearInterval(interval);
   }, [onLoadingComplete]);
@@ -58,6 +58,35 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 
       {/* 3D Logo */}
       <div className="logo-container">
+        {/* Logo Image */}
+        <motion.div
+          className="logo-image-wrapper"
+          initial={{ opacity: 0, scale: 0, rotateY: -180 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+          transition={{ 
+            duration: 1.2, 
+            type: "spring",
+            stiffness: 100,
+            damping: 15
+          }}
+        >
+          <motion.img
+            src="/logo.png"
+            alt="AWS Cloud Clubs Logo"
+            className="logo-image"
+            animate={{
+              rotateY: [0, 360],
+            }}
+            transition={{ 
+              duration: 4, 
+              delay: 1,
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          />
+          <div className="logo-glow"></div>
+        </motion.div>
+
         <div className="logo-3d">
           {['A', 'W', 'S'].map((letter, i) => (
             <motion.span
@@ -160,14 +189,14 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         </motion.div>
       </div>
 
-      {/* Powered By */}
+      {/* Organised By */}
       <motion.p
         className="powered-by"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <span className="gradient-text">POWERED BY AI TECHNOLOGY</span>
+        <span className="gradient-text">ORGANISED BY AWSCCSOU</span>
       </motion.p>
     </motion.div>
   );

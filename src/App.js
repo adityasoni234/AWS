@@ -5,7 +5,6 @@ import LoadingScreen from './components/LoadingScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import About from './components/About';
 import EventCalendar from './components/EventCalendar';
 import Contact from './components/Contact';
 import ParticleBackground from './components/ParticleBackground';
@@ -89,7 +88,6 @@ function App() {
                 <Header />
                 <main className="main-content">
                   <Home />
-                  <About />
                   <EventCalendar />
                   <EventsPage />
                   <Contact />

@@ -39,7 +39,7 @@ const EventCalendar = () => {
       duration: '75 minutes',
       location: 'Main Venue',
       description: 'Participant check-in and networking over breakfast. Welcome to AWS Student Community Day! Collect your badges, enjoy breakfast, and start connecting with fellow cloud enthusiasts.',
-      category: 'Registration',
+      category: 'Break',
       icon: FaCoffee,
       gradient: 'from-red-500 to-pink-500'
     },
@@ -51,7 +51,7 @@ const EventCalendar = () => {
       duration: '15 minutes',
       location: 'Main Auditorium',
       description: 'Opening remarks and official commencement of the event. Join us for the grand opening of AWS Student Community Day 2025!',
-      category: 'Opening',
+      category: 'Keynote',
       icon: FaCalendarCheck,
       gradient: 'from-teal-500 to-cyan-500'
     },
@@ -127,7 +127,7 @@ const EventCalendar = () => {
       location: 'CV Raman Hall',
       speaker: 'Kiran Trivedi',
       description: 'Intelligence at the IoT Edge with AWS IoT Greengrass. Learn how to build and deploy IoT solutions, connect devices, and process data at the edge with AWS IoT services.',
-      category: 'Track',
+      category: 'Workshop',
       icon: FaNetworkWired,
       track: 1,
       gradient: 'from-pink-500 to-rose-500'
@@ -141,7 +141,7 @@ const EventCalendar = () => {
       location: 'Newton Hall',
       speaker: 'Vaibhav Malpani',
       description: 'Get hands-on with AWS DeepRacer! Learn reinforcement learning through autonomous racing. Train your own ML models and experience the thrill of AI-powered racing.',
-      category: 'Track',
+      category: 'Workshop',
       icon: FaCar,
       track: 2,
       gradient: 'from-pink-500 to-rose-500'
@@ -155,7 +155,7 @@ const EventCalendar = () => {
       location: 'Ramanujan Hall',
       speaker: 'Udit Parekh',
       description: 'Frontend and Backend App Development with AWS Amplify. Build full-stack serverless applications with authentication, APIs, storage, and more using AWS Amplify.',
-      category: 'Track',
+      category: 'Workshop',
       icon: FaLaptopCode,
       track: 3,
       gradient: 'from-pink-500 to-rose-500'
@@ -168,7 +168,7 @@ const EventCalendar = () => {
       duration: '45 minutes',
       location: 'Main Venue',
       description: 'Performances and entertainment! Showcase your talent in this open segment. Enjoy cultural performances, music, and entertainment from fellow participants.',
-      category: 'Cultural',
+      category: 'Activity',
       icon: FaMicrophone,
       gradient: 'from-orange-500 to-red-500'
     },
@@ -180,13 +180,13 @@ const EventCalendar = () => {
       duration: '15 minutes',
       location: 'E Block, Ground Floor',
       description: 'Distribution of goodies and closing notes. Collect your AWS swags, certificates, and participate in the closing ceremony. Thank you for being part of AWS SCD 2025!',
-      category: 'Closing',
+      category: 'Keynote',
       icon: FaGift,
       gradient: 'from-purple-500 to-indigo-500'
     }
   ];
 
-  const categories = ['All', 'Keynote', 'Technical', 'Workshop', 'Track', 'Activity', 'Break', 'Cultural'];
+  const categories = ['All', 'Keynote', 'Technical', 'Workshop', 'Activity', 'Break'];
 
   const filteredEvents = activeCategory === 'All' 
     ? events 
@@ -194,16 +194,11 @@ const EventCalendar = () => {
 
   const getCategoryColor = (category) => {
     const colors = {
-      'Registration': '#FF6B6B',
-      'Opening': '#4ECDC4',
-      'Keynote': '#8B5CF6',
-      'Workshop': '#F59E0B',
-      'Activity': '#10B981',
-      'Technical': '#3B82F6',
-      'Break': '#6B7280',
-      'Track': '#EC4899',
-      'Cultural': '#F97316',
-      'Closing': '#8B5CF6'
+      'Keynote': '#8B5CF6',      // Purple - Opening, Keynote, Closing
+      'Technical': '#3B82F6',     // Blue - Technical Sessions
+      'Workshop': '#F59E0B',      // Orange - All Workshops & Tracks
+      'Activity': '#10B981',      // Green - Quiz & Cultural
+      'Break': '#6B7280'          // Gray - Food & Breaks
     };
     return colors[category] || '#8B5CF6';
   };
@@ -236,7 +231,7 @@ const EventCalendar = () => {
           <div className="event-meta">
             <div className="meta-item">
               <FaCalendarCheck />
-              <span>December 15, 2025</span>
+              <span>December 12, 2025</span>
             </div>
             <div className="meta-divider"></div>
             <div className="meta-item">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaInstagram, FaPhone } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -46,12 +46,19 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3 className="footer-title">AWS Cloud Clubs</h3>
+          <div className="footer-brand-header">
+            <img src="/logo.png" alt="AWS Cloud Clubs Logo" className="footer-logo" />
+            <h3 className="footer-title">AWS Cloud Clubs</h3>
+          </div>
           <p className="footer-tagline">Silver Oak University</p>
-          <p className="footer-description">
-            Building the future with cloud computing and AI-powered solutions. 
-            Join us in exploring the limitless possibilities of AWS technology.
-          </p>
+          <a 
+            href="https://www.google.com/maps/dir//352%2F353,+Silver+Oak+University,+370%2F371,+near+Bhavik+Publication,+Gota+Gam,+Gota,+Ahmedabad,+Gujarat+382481/@23.0902832,72.4522362,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x395e833af6f39347:0xf1db9065daea7008!2m2!1d72.5346378!2d23.0903046?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-address"
+          >
+            352/353, Silver Oak University, 370/371, near Bhavik Publication, Gota, Ahmedabad, Gujarat 382481
+          </a>
         </motion.div>
 
         <motion.div
@@ -64,7 +71,6 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li><a onClick={() => handleNavigation('home')} style={{ cursor: 'pointer' }}>Home</a></li>
-            <li><a onClick={() => handleNavigation('about')} style={{ cursor: 'pointer' }}>About</a></li>
             <li><a onClick={() => handleNavigation('calendar')} style={{ cursor: 'pointer' }}>Calendar</a></li>
             <li><a onClick={() => handleNavigation('events')} style={{ cursor: 'pointer' }}>Events</a></li>
             <li><a onClick={() => handleNavigation('contact')} style={{ cursor: 'pointer' }}>Contact</a></li>
@@ -92,7 +98,7 @@ const Footer = () => {
                 <div key={index} className="contact-item">
                   <span className="contact-name">{contact.name}</span>
                   <a href={`tel:${contact.phone}`} className="contact-phone">
-                    <FaPhone className="phone-icon" />
+                    <FaPhoneAlt className="phone-icon" />
                     {contact.phone}
                   </a>
                 </div>

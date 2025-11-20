@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaClock } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
@@ -42,16 +42,11 @@ const Contact = () => {
       linkText: 'Send Email'
     },
     {
-      icon: FaPhone,
+      icon: FaPhoneAlt,
       title: 'Phone',
       info: ['Tanuj Bhatt: +91 93778 49778', 'Sujal Patel: +91 87580 55599'],
       link: 'tel:+919377849778',
       linkText: 'Call Now'
-    },
-    {
-      icon: FaClock,
-      title: 'Hours',
-      info: ['Mon - Fri: 9AM - 6PM', 'Sat - Sun: Closed']
     }
   ];
 

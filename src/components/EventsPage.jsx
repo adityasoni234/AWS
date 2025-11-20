@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaUsers, 
-  FaHandshake, 
   FaClock,
   FaCalendarAlt,
   FaStar,
-  FaMapMarkerAlt,
-  FaTicketAlt
+  FaMapMarkerAlt
 } from 'react-icons/fa';
 import './EventsPage.css';
 
@@ -45,22 +43,17 @@ const EventsPage = () => {
               { 
                 icon: <FaCalendarAlt />, 
                 title: 'Date & Time', 
-                info: ['December 15, 2025', '9:00 AM - 6:00 PM'] 
+                info: ['December 12, 2025', '08:00 AM - 05:00 PM'] 
               },
               { 
                 icon: <FaMapMarkerAlt />, 
                 title: 'Venue', 
-                info: ['Tech Convention Center', 'Silicon Valley, CA'] 
+                info: ['Silver Oak University', 'Gota, Ahmedabad, Gujarat'] 
               },
               { 
                 icon: <FaStar />, 
                 title: 'Event Type', 
                 info: ['AWS Student Community Day', 'Tech Conference'] 
-              },
-              { 
-                icon: <FaTicketAlt />, 
-                title: 'Registration', 
-                info: ['Free Entry', 'Limited Seats Available'] 
               }
             ].map((item, index) => (
               <motion.div
@@ -121,60 +114,6 @@ const EventsPage = () => {
                   </div>
                 </motion.div>
               </div>
-            </motion.div>
-
-            {/* Sponsors Section */}
-            <motion.div
-              className="revealing-section"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <div className="section-icon-wrapper">
-                <FaHandshake className="section-icon" />
-              </div>
-              <h3 className="section-heading">SPONSORS</h3>
-              <div className="revealing-box">
-                <motion.div
-                  className="revealing-content"
-                  initial={{ scale: 0.9 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-                >
-                  <div className="clock-icon">
-                    <FaClock />
-                  </div>
-                  <h4>Revealing Soon</h4>
-                  <p>We're partnering with incredible sponsors. More details coming soon!</p>
-                  <div className="dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Call to Action */}
-            <motion.div
-              className="events-cta"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              <h3>Want to Stay Updated?</h3>
-              <p>Register now to receive all event updates and announcements</p>
-              <motion.button
-                className="cta-button"
-                onClick={() => window.location.hash = '#register'}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <FaCalendarAlt /> REGISTER NOW
-              </motion.button>
             </motion.div>
           </motion.div>
         </div>

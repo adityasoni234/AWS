@@ -53,13 +53,60 @@
 /* 3D Logo Container */
 .logo-container {
   position: relative;
-  width: 500px;
+  width: 700px;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1000px;
   margin-bottom: 60px;
+  gap: 40px;
+}
+
+/* Logo Image Wrapper */
+.logo-image-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8));
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: logoGlow 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes logoGlow {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1); 
+    opacity: 0.6; 
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.2); 
+    opacity: 1; 
+  }
 }
 
 .logo-3d {
@@ -103,8 +150,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border: 2px solid #8B5CF6;
   border-radius: 50%;
   box-shadow: 
@@ -115,8 +162,8 @@
 }
 
 .ring-2 {
-  width: 450px;
-  height: 450px;
+  width: 550px;
+  height: 550px;
   border-color: #A78BFA;
   box-shadow: 
     0 0 20px #A78BFA,
@@ -254,10 +301,21 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .logo-container {
-    width: 350px;
+    width: 500px;
     height: 250px;
+    gap: 30px;
+  }
+
+  .logo-image-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo-glow {
+    width: 160px;
+    height: 160px;
   }
 
   .logo-3d {
@@ -281,13 +339,40 @@
   }
 
   .glow-ring {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
   }
 
   .ring-2 {
-    width: 350px;
-    height: 350px;
+    width: 450px;
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    width: 400px;
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+  }
+
+  .logo-image-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-glow {
+    width: 140px;
+    height: 140px;
+  }
+
+  .letter {
+    font-size: 60px;
+  }
+
+  .logo-3d {
+    gap: 15px;
   }
 }
 
@@ -296,8 +381,18 @@
     width: 280px;
   }
 
+  .logo-image-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo-glow {
+    width: 120px;
+    height: 120px;
+  }
+
   .letter {
-    font-size: 60px;
+    font-size: 50px;
   }
 
   .loading-word {
@@ -311,5 +406,15 @@
 
   .progress-text {
     font-size: 22px;
+  }
+
+  .glow-ring {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-2 {
+    width: 350px;
+    height: 350px;
   }
 }
