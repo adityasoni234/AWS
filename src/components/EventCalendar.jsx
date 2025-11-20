@@ -16,178 +16,181 @@ import {
   FaGift,
   FaClock,
   FaMapMarkerAlt,
-  FaUser
+  FaUser,
+  FaAws,
+  FaCode,
+  FaLaptopCode,
+  FaNetworkWired,
+  FaArrowRight,
+  FaInfoCircle
 } from 'react-icons/fa';
 import './EventCalendar.css';
 
 const EventCalendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('All');
 
   const events = [
     {
       id: 1,
       title: 'Registration and Breakfast',
       date: '2025-12-15',
-      time: '08:30 AM - 09:20 AM',
-      duration: '50 minutes',
+      time: '08:00 AM - 09:15 AM',
+      duration: '75 minutes',
       location: 'Main Venue',
-      description: 'Welcome to AWS Student Community Day! Check-in, collect your badges, and enjoy breakfast while networking with fellow attendees.',
+      description: 'Participant check-in and networking over breakfast. Welcome to AWS Student Community Day! Collect your badges, enjoy breakfast, and start connecting with fellow cloud enthusiasts.',
       category: 'Registration',
       icon: FaCoffee,
-      buffer: '10 minutes'
+      gradient: 'from-red-500 to-pink-500'
     },
     {
       id: 2,
-      title: 'Inauguration',
+      title: 'Inauguration Ceremony',
       date: '2025-12-15',
       time: '09:30 AM - 09:45 AM',
       duration: '15 minutes',
       location: 'Main Auditorium',
-      description: 'Official opening ceremony and welcome address from the organizing committee.',
+      description: 'Opening remarks and official commencement of the event. Join us for the grand opening of AWS Student Community Day 2025!',
       category: 'Opening',
       icon: FaCalendarCheck,
-      buffer: '5 minutes'
+      gradient: 'from-teal-500 to-cyan-500'
     },
     {
       id: 3,
-      title: 'Keynote: AWS IAM & Config Rules',
+      title: 'Keynote: A Career in Cloud',
       date: '2025-12-15',
-      time: '09:50 AM - 10:35 AM',
-      duration: '45 minutes',
+      time: '09:45 AM - 10:20 AM',
+      duration: '35 minutes',
       location: 'Main Auditorium',
-      speaker: 'Bishwajit Mohapatra',
-      description: 'Configure AWS Identity and Access Management (IAM) roles and AWS Config Rules for compliance. Learn best practices for securing your AWS infrastructure.',
+      speaker: 'Dr. Bishwajit Mohapatra',
+      description: 'Explore the exciting career opportunities in cloud computing. Learn about industry trends, required skills, and how to build a successful career in AWS and cloud technologies.',
       category: 'Keynote',
-      icon: FaLock,
-      buffer: '5 minutes'
+      icon: FaAws,
+      gradient: 'from-purple-500 to-indigo-500'
     },
     {
       id: 4,
-      title: 'CI/CD Pipeline with AWS / Agentic Spec Coding: KIRO',
+      title: 'Amazon SageMaker',
       date: '2025-12-15',
-      time: '10:40 AM - 11:25 AM',
-      duration: '45 minutes',
+      time: '10:20 AM - 11:10 AM',
+      duration: '50 minutes',
       location: 'Main Auditorium',
-      speaker: 'Shubham Londhe',
-      description: 'Build a CI/CD pipeline using KIRO, AWS CodeCommit, CodeBuild, and CodePipeline. Hands-on session on automating your deployment workflow.',
-      category: 'Workshop',
-      icon: FaCogs,
-      buffer: '5 minutes'
+      speaker: 'Nilesh Vaghela',
+      description: 'Dive into Amazon SageMaker and learn how to build, train, and deploy machine learning models at scale. Hands-on insights into ML workflows on AWS.',
+      category: 'Technical',
+      icon: FaChartLine,
+      gradient: 'from-blue-500 to-indigo-500'
     },
     {
       id: 5,
       title: 'AWS Quiz',
       date: '2025-12-15',
-      time: '10:30 AM - 11:00 AM',
+      time: 'After All Sessions',
       duration: '30 minutes',
       location: 'All Venues',
-      description: 'Test your AWS knowledge! Exciting prizes for winners. Interactive quiz covering AWS services, best practices, and cloud concepts.',
+      description: 'Interactive quiz session with technical knowledge for all participants. Test your AWS expertise and win exciting prizes! Challenge yourself with questions covering various AWS services.',
       category: 'Activity',
       icon: FaBullseye,
-      buffer: '5 minutes'
+      gradient: 'from-green-500 to-emerald-500'
     },
     {
       id: 6,
-      title: 'CloudWatch & X-Ray Dashboards',
+      title: 'Spec Coding with Kiro',
       date: '2025-12-15',
-      time: '11:05 AM - 11:50 AM',
-      duration: '45 minutes',
+      time: '11:40 AM - 12:30 PM',
+      duration: '50 minutes',
       location: 'Main Auditorium',
-      speaker: 'Nilesh Vaghela',
-      description: 'Implement dashboards using Amazon CloudWatch and AWS X-Ray. Learn monitoring and debugging techniques for distributed applications.',
-      category: 'Technical',
-      icon: FaChartLine,
-      buffer: '10 minutes'
+      speaker: 'Shubham Londhe',
+      description: 'Learn about specification-based coding with Kiro. Discover how to automate development workflows and build robust CI/CD pipelines with AWS services.',
+      category: 'Workshop',
+      icon: FaCode,
+      gradient: 'from-amber-500 to-orange-500'
     },
     {
       id: 7,
-      title: 'Lunch and Networking',
+      title: 'Lunch Break',
       date: '2025-12-15',
-      time: '12:00 PM - 01:30 PM',
+      time: '12:30 PM - 02:00 PM',
       duration: '90 minutes',
       location: 'Cafeteria',
-      description: 'Enjoy lunch and network with speakers, sponsors, and fellow attendees. Great opportunity to discuss AWS, career paths, and projects.',
+      description: 'Networking and refreshment session. Enjoy delicious lunch while networking with speakers, sponsors, and fellow attendees. Perfect time to discuss projects and exchange ideas!',
       category: 'Break',
       icon: FaUtensils,
-      buffer: '15 minutes'
+      gradient: 'from-gray-500 to-slate-500'
     },
     {
       id: 8,
-      title: 'Track 1: IoT + ML on AWS',
+      title: 'Track 1: AWS IoT Core / IoT Greengrass',
       date: '2025-12-15',
-      time: '01:45 PM - 02:35 PM',
-      duration: '50 minutes',
-      location: 'Hall A',
-      description: 'Train & Deploy a Tiny ML Model with SageMaker + Edge Inference. Hands-on session combining IoT and machine learning.',
+      time: '02:20 PM - 03:40 PM',
+      duration: '80 minutes',
+      location: 'CV Raman Hall',
+      speaker: 'Kiran Trivedi',
+      description: 'Intelligence at the IoT Edge with AWS IoT Greengrass. Learn how to build and deploy IoT solutions, connect devices, and process data at the edge with AWS IoT services.',
       category: 'Track',
-      icon: FaRobot,
-      buffer: '10 minutes',
-      track: 1
+      icon: FaNetworkWired,
+      track: 1,
+      gradient: 'from-pink-500 to-rose-500'
     },
     {
       id: 9,
-      title: 'Track 2: Data Engineering Basics',
+      title: 'Track 2: AWS DeepRacer',
       date: '2025-12-15',
-      time: '01:45 PM - 02:35 PM',
-      duration: '50 minutes',
-      location: 'Hall B',
-      description: 'Build an ETL Pipeline with AWS Glue + S3 + Athena. Learn data engineering fundamentals with AWS services.',
+      time: '02:20 PM - 03:40 PM',
+      duration: '80 minutes',
+      location: 'Newton Hall',
+      speaker: 'Vaibhav Malpani',
+      description: 'Get hands-on with AWS DeepRacer! Learn reinforcement learning through autonomous racing. Train your own ML models and experience the thrill of AI-powered racing.',
       category: 'Track',
-      icon: FaDatabase,
-      buffer: '10 minutes',
-      track: 2
+      icon: FaCar,
+      track: 2,
+      gradient: 'from-pink-500 to-rose-500'
     },
     {
       id: 10,
-      title: 'Track 3: Panel Discussion',
+      title: 'Track 3: AWS Amplify',
       date: '2025-12-15',
-      time: '01:45 PM - 02:35 PM',
-      duration: '50 minutes',
-      location: 'Hall C',
-      description: 'Interactive panel discussion with industry experts on cloud careers, AWS certifications, and future trends.',
+      time: '02:20 PM - 03:40 PM',
+      duration: '80 minutes',
+      location: 'Ramanujan Hall',
+      speaker: 'Udit Parekh',
+      description: 'Frontend and Backend App Development with AWS Amplify. Build full-stack serverless applications with authentication, APIs, storage, and more using AWS Amplify.',
       category: 'Track',
-      icon: FaComments,
-      buffer: '10 minutes',
-      track: 3
+      icon: FaLaptopCode,
+      track: 3,
+      gradient: 'from-pink-500 to-rose-500'
     },
     {
       id: 11,
-      title: 'SageMaker Studio / AWS DeepRacer',
+      title: 'Cultural Segment',
       date: '2025-12-15',
-      time: '02:45 PM - 03:30 PM',
+      time: '04:00 PM - 04:45 PM',
       duration: '45 minutes',
-      location: 'Main Auditorium',
-      speaker: 'Vaibhav Malpani',
-      description: 'Build and deploy a classification model using SageMaker Studio OR Reinforcement Learning with AWS DeepRacer. Hands-on ML session.',
-      category: 'Workshop',
-      icon: FaCar,
-      buffer: '5 minutes'
+      location: 'Main Venue',
+      description: 'Performances and entertainment! Showcase your talent in this open segment. Enjoy cultural performances, music, and entertainment from fellow participants.',
+      category: 'Cultural',
+      icon: FaMicrophone,
+      gradient: 'from-orange-500 to-red-500'
     },
     {
       id: 12,
-      title: 'Cultural Track & Open Mic',
+      title: 'Swag Distribution & Closing',
       date: '2025-12-15',
-      time: '03:35 PM - 04:20 PM',
-      duration: '45 minutes',
-      location: 'Main Venue',
-      description: 'Showcase your talent! Open mic for participants to perform, share experiences, or present their projects. Fun and relaxing session.',
-      category: 'Cultural',
-      icon: FaMicrophone,
-      buffer: '5 minutes'
-    },
-    {
-      id: 13,
-      title: 'Closing Note and Swags Distribution',
-      date: '2025-12-15',
-      time: '04:25 PM - 05:00 PM',
-      duration: '35 minutes',
-      location: 'Main Auditorium',
-      description: 'Event closing remarks, certificate distribution, and AWS swags giveaway. Thank you for being part of AWS SCD 2025!',
+      time: '04:45 PM - 05:00 PM',
+      duration: '15 minutes',
+      location: 'E Block, Ground Floor',
+      description: 'Distribution of goodies and closing notes. Collect your AWS swags, certificates, and participate in the closing ceremony. Thank you for being part of AWS SCD 2025!',
       category: 'Closing',
       icon: FaGift,
-      buffer: '0 minutes'
+      gradient: 'from-purple-500 to-indigo-500'
     }
   ];
+
+  const categories = ['All', 'Keynote', 'Technical', 'Workshop', 'Track', 'Activity', 'Break', 'Cultural'];
+
+  const filteredEvents = activeCategory === 'All' 
+    ? events 
+    : events.filter(event => event.category === activeCategory);
 
   const getCategoryColor = (category) => {
     const colors = {
@@ -206,205 +209,254 @@ const EventCalendar = () => {
   };
 
   return (
-    <section id="calendar" className="event-calendar">
-      <div className="calendar-container">
+    <section id="calendar" className="event-calendar-modern">
+      <div className="calendar-modern-container">
+        {/* Header Section */}
         <motion.div
-          className="calendar-header"
-          initial={{ opacity: 0, y: 50 }}
+          className="calendar-modern-header"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">AWS STUDENT COMMUNITY DAY 2025</h2>
-          <div className="title-line"></div>
-          <p className="section-subtitle">Complete Event Timeline</p>
-          <motion.div 
-            className="event-date-badge"
+          <motion.div
+            className="header-badge"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.5, type: "spring" }}
+            transition={{ delay: 0.3, type: "spring" }}
           >
-            <FaCalendarCheck style={{ marginRight: '10px' }} />
-            December 15, 2025
-            <FaClock style={{ margin: '0 10px' }} />
-            08:30 AM - 05:00 PM
+            <FaCalendarCheck /> EVENT SCHEDULE
           </motion.div>
+          
+          <h1 className="modern-title">
+            AWS Student Community Day
+            <span className="title-year">2025</span>
+          </h1>
+          
+          <div className="event-meta">
+            <div className="meta-item">
+              <FaCalendarCheck />
+              <span>December 15, 2025</span>
+            </div>
+            <div className="meta-divider"></div>
+            <div className="meta-item">
+              <FaClock />
+              <span>08:00 AM - 05:00 PM</span>
+            </div>
+            <div className="meta-divider"></div>
+            <div className="meta-item">
+              <FaMapMarkerAlt />
+              <span>Silver Oak University</span>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="timeline-container">
-          {events.map((event, index) => {
+        {/* Category Filter */}
+        <motion.div
+          className="category-filter"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          {categories.map((category, index) => (
+            <motion.button
+              key={category}
+              className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Events Grid */}
+        <div className="events-grid">
+          {filteredEvents.map((event, index) => {
             const IconComponent = event.icon;
+            
             return (
               <motion.div
                 key={event.id}
-                className="timeline-item"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.6 }}
+                className="event-card-modern"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 onClick={() => setSelectedEvent(event)}
               >
+                {/* Card Header with Gradient */}
                 <div 
-                  className="timeline-dot" 
+                  className="card-header-modern"
                   style={{ 
-                    backgroundColor: getCategoryColor(event.category),
-                    boxShadow: `0 0 20px ${getCategoryColor(event.category)}`
+                    background: `linear-gradient(135deg, ${getCategoryColor(event.category)}20, ${getCategoryColor(event.category)}10)`
                   }}
-                ></div>
-                
-                <motion.div
-                  className="timeline-card"
-                  whileHover={{ 
-                    scale: 1.02
-                  }}
-                  style={{ borderLeftColor: getCategoryColor(event.category) }}
                 >
-                  <div className="timeline-time">
-                    <span 
-                      className="time-badge" 
-                      style={{ backgroundColor: getCategoryColor(event.category) }}
-                    >
-                      <FaClock style={{ marginRight: '5px', fontSize: '12px' }} />
-                      {event.time}
-                    </span>
-                    <span className="duration-badge">{event.duration}</span>
+                  <div className="card-icon-wrapper">
+                    <IconComponent 
+                      className="card-icon" 
+                      style={{ color: getCategoryColor(event.category) }}
+                    />
+                  </div>
+                  
+                  <div className="card-header-content">
+                    <div className="card-time">
+                      <FaClock /> {event.time}
+                    </div>
+                    <div className="card-duration">{event.duration}</div>
                   </div>
 
-                  <div className="timeline-content">
-                    <div className="event-icon-large">
-                      <IconComponent size={48} color={getCategoryColor(event.category)} />
-                    </div>
-                    
-                    <div 
-                      className="event-category-badge" 
-                      style={{ 
-                        backgroundColor: `${getCategoryColor(event.category)}20`,
-                        color: getCategoryColor(event.category),
-                        borderColor: getCategoryColor(event.category)
-                      }}
-                    >
-                      {event.category}
-                    </div>
-
-                    <h3>{event.title}</h3>
-                    
-                    {event.speaker && (
-                      <div className="speaker-info">
-                        <FaUser style={{ fontSize: '16px' }} />
-                        <span className="speaker-name">{event.speaker}</span>
-                      </div>
-                    )}
-
-                    {event.track && (
-                      <div className="track-badge">
-                        Track {event.track}
-                      </div>
-                    )}
-
-                    <div className="event-location">
-                      <FaMapMarkerAlt />
-                      <span>{event.location}</span>
-                    </div>
-
-                    <p className="event-description-short">
-                      {event.description.substring(0, 100)}...
-                    </p>
-
-                    <motion.button
-                      className="view-details-btn"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View Details →
-                    </motion.button>
+                  <div 
+                    className="category-pill"
+                    style={{ 
+                      background: getCategoryColor(event.category),
+                      boxShadow: `0 4px 15px ${getCategoryColor(event.category)}40`
+                    }}
+                  >
+                    {event.category}
                   </div>
-                </motion.div>
+                </div>
+
+                {/* Card Body */}
+                <div className="card-body-modern">
+                  {event.track && (
+                    <div className="track-indicator">
+                      Track {event.track}
+                    </div>
+                  )}
+                  
+                  <h3 className="event-card-title">{event.title}</h3>
+                  
+                  {event.speaker && (
+                    <div className="speaker-tag">
+                      <FaUser />
+                      <span>{event.speaker}</span>
+                    </div>
+                  )}
+                  
+                  <div className="location-tag">
+                    <FaMapMarkerAlt />
+                    <span>{event.location}</span>
+                  </div>
+                  
+                  <p className="event-card-description">
+                    {event.description.substring(0, 120)}...
+                  </p>
+                  
+                  <motion.button
+                    className="learn-more-btn"
+                    whileHover={{ x: 5 }}
+                    style={{ color: getCategoryColor(event.category) }}
+                  >
+                    Learn More <FaArrowRight />
+                  </motion.button>
+                </div>
+
+                {/* Hover Effect Overlay */}
+                <div 
+                  className="card-hover-overlay"
+                  style={{ background: getCategoryColor(event.category) }}
+                />
               </motion.div>
             );
           })}
         </div>
 
+        {/* Modal */}
         <AnimatePresence>
           {selectedEvent && (
             <motion.div
-              className="modal-overlay"
+              className="modal-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedEvent(null)}
             >
               <motion.div
-                className="modal-content"
-                initial={{ scale: 0.8, y: 50 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.8, y: 50 }}
+                className="modal-modern"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 20 }}
                 onClick={(e) => e.stopPropagation()}
-                style={{ borderTopColor: getCategoryColor(selectedEvent.category) }}
               >
-                <button className="modal-close" onClick={() => setSelectedEvent(null)}>×</button>
-                
-                <div className="modal-header">
-                  <div className="modal-icon">
-                    {React.createElement(selectedEvent.icon, { 
-                      size: 80, 
-                      color: getCategoryColor(selectedEvent.category) 
-                    })}
+                <button 
+                  className="modal-close-modern" 
+                  onClick={() => setSelectedEvent(null)}
+                >
+                  ×
+                </button>
+
+                <div 
+                  className="modal-header-modern"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${getCategoryColor(selectedEvent.category)}, ${getCategoryColor(selectedEvent.category)}dd)`
+                  }}
+                >
+                  <div className="modal-icon-large">
+                    {React.createElement(selectedEvent.icon, { size: 60 })}
                   </div>
                   <h2>{selectedEvent.title}</h2>
-                  <span 
-                    className="modal-category" 
-                    style={{ backgroundColor: getCategoryColor(selectedEvent.category) }}
-                  >
+                  <div className="modal-category-badge">
                     {selectedEvent.category}
-                  </span>
+                  </div>
                 </div>
 
-                <div className="modal-body">
-                  <div className="modal-info">
-                    <div className="info-item">
-                      <span><FaClock /> Time:</span>
-                      <span>{selectedEvent.time} ({selectedEvent.duration})</span>
+                <div className="modal-body-modern">
+                  <div className="modal-info-grid">
+                    <div className="info-box">
+                      <FaClock className="info-icon" />
+                      <div className="info-content">
+                        <span className="info-label">Time</span>
+                        <span className="info-text">{selectedEvent.time}</span>
+                      </div>
                     </div>
-                    <div className="info-item">
-                      <span><FaMapMarkerAlt /> Location:</span>
-                      <span>{selectedEvent.location}</span>
+
+                    <div className="info-box">
+                      <FaInfoCircle className="info-icon" />
+                      <div className="info-content">
+                        <span className="info-label">Duration</span>
+                        <span className="info-text">{selectedEvent.duration}</span>
+                      </div>
                     </div>
+
+                    <div className="info-box">
+                      <FaMapMarkerAlt className="info-icon" />
+                      <div className="info-content">
+                        <span className="info-label">Location</span>
+                        <span className="info-text">{selectedEvent.location}</span>
+                      </div>
+                    </div>
+
                     {selectedEvent.speaker && (
-                      <div className="info-item">
-                        <span><FaUser /> Speaker:</span>
-                        <span>{selectedEvent.speaker}</span>
-                      </div>
-                    )}
-                    {selectedEvent.buffer && (
-                      <div className="info-item">
-                        <span><FaClock /> Buffer Time:</span>
-                        <span>{selectedEvent.buffer}</span>
-                      </div>
-                    )}
-                    {selectedEvent.track && (
-                      <div className="info-item">
-                        <span><FaBullseye /> Track:</span>
-                        <span>Track {selectedEvent.track}</span>
+                      <div className="info-box">
+                        <FaUser className="info-icon" />
+                        <div className="info-content">
+                          <span className="info-label">Speaker</span>
+                          <span className="info-text">{selectedEvent.speaker}</span>
+                        </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="modal-description">
-                    <h4>About This Session</h4>
+                  <div className="modal-description-section">
+                    <h4>Session Overview</h4>
                     <p>{selectedEvent.description}</p>
                   </div>
 
-                  <div className="modal-actions">
-                    <motion.button
-                      className="btn-register"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      style={{ backgroundColor: getCategoryColor(selectedEvent.category) }}
-                    >
-                      <FaCalendarCheck style={{ marginRight: '8px' }} />
-                      ADD TO SCHEDULE
-                    </motion.button>
-                  </div>
+                  <motion.button
+                    className="register-btn-modern"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ background: getCategoryColor(selectedEvent.category) }}
+                  >
+                    <FaCalendarCheck /> Add to My Schedule
+                  </motion.button>
                 </div>
               </motion.div>
             </motion.div>
