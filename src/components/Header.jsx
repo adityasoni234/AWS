@@ -19,16 +19,13 @@ const Header = () => {
   };
 
   const scrollToSection = (sectionId) => {
-    // Check if trying to navigate to events page
     if (sectionId === 'events') {
       window.location.hash = '#events';
       setIsMenuOpen(false);
       return;
     }
 
-    // For other sections, check if we're on events page
     if (window.location.hash === '#events') {
-      // If on events page, navigate to home first
       window.location.hash = '';
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -37,7 +34,6 @@ const Header = () => {
         }
       }, 100);
     } else {
-      // Normal scrolling on main page
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -46,8 +42,9 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  // ⭐ UPDATED REGISTER FUNCTION
   const handleRegister = () => {
-    window.location.hash = '#register';
+    window.location.href = 'https://konfhub.com/awsccsou-awsc-2025';
     setIsMenuOpen(false);
   };
 
@@ -72,7 +69,11 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <img src="/logo.png" alt="AWS Logo" className="logo-image" />
+          <img 
+            src="https://in3700.wordpress.com/wp-content/uploads/2025/11/group-2085663055-2.png" 
+            alt="AWS Logo" 
+            className="logo-image" 
+          />
           <div className="logo-glow"></div>
         </motion.div>
 
@@ -91,6 +92,7 @@ const Header = () => {
                 <div className="nav-underline"></div>
               </motion.li>
             ))}
+
             <motion.li className="nav-register-mobile">
               <motion.button
                 className="register-btn-mobile"
@@ -116,7 +118,10 @@ const Header = () => {
           Register
         </motion.button>
 
-        <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+        <div
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+        >
           <span></span>
           <span></span>
           <span></span>
