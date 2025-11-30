@@ -48,9 +48,7 @@ const Footer = () => {
         >
           <div className="footer-brand-header">
             <img src="/logo.png" alt="AWS Cloud Clubs Logo" className="footer-logo" />
-            <h3 className="footer-title"></h3>
           </div>
-          <p className="footer-tagline"></p>
           <a 
             href="https://www.google.com/maps/dir//352%2F353,+Silver+Oak+University,+370%2F371,+near+Bhavik+Publication,+Gota+Gam,+Gota,+Ahmedabad,+Gujarat+382481/@23.0902832,72.4522362,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x395e833af6f39347:0xf1db9065daea7008!2m2!1d72.5346378!2d23.0903046?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
@@ -70,10 +68,10 @@ const Footer = () => {
         >
           <h4>Quick Links</h4>
           <ul>
-            <li><a onClick={() => handleNavigation('home')} style={{ cursor: 'pointer' }}>Home</a></li>
-            <li><a onClick={() => handleNavigation('calendar')} style={{ cursor: 'pointer' }}>Calendar</a></li>
-            <li><a onClick={() => handleNavigation('events')} style={{ cursor: 'pointer' }}>Events</a></li>
-            <li><a onClick={() => handleNavigation('contact')} style={{ cursor: 'pointer' }}>Contact</a></li>
+            <li><button onClick={() => handleNavigation('home')} className="footer-link-btn">Home</button></li>
+            <li><button onClick={() => handleNavigation('calendar')} className="footer-link-btn">Calendar</button></li>
+            <li><button onClick={() => handleNavigation('events')} className="footer-link-btn">Events</button></li>
+            <li><button onClick={() => handleNavigation('contact')} className="footer-link-btn">Contact</button></li>
           </ul>
         </motion.div>
 

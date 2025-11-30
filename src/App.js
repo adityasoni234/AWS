@@ -14,7 +14,6 @@ import EventsPage from './components/EventsPage';
 function App() {
   const [loading, setLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentPage, setCurrentPage] = useState('home');
 
   const handleLoadingComplete = () => {
@@ -46,20 +45,11 @@ function App() {
       setShowScrollTop(window.scrollY > 300);
     };
 
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1
-      });
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -79,7 +69,7 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <ParticleBackground mousePosition={mousePosition} />
+            <ParticleBackground />
             
             {currentPage === 'register' ? (
               <RegistrationPage />

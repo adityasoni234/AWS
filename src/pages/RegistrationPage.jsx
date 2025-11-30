@@ -3,8 +3,6 @@ import { motion } from 'framer-motion';
 import { 
   FaUser, 
   FaEnvelope, 
-  FaPhone, 
-  FaUniversity, 
   FaGraduationCap,
   FaIdCard,
   FaCalendarCheck,
@@ -13,11 +11,9 @@ import {
 } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ParticleBackground from '../components/ParticleBackground';
 import './RegistrationPage.css';
 
 const RegistrationPage = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -36,19 +32,7 @@ const RegistrationPage = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
     window.scrollTo(0, 0); // Scroll to top when page loads
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
   }, []);
 
   const interestOptions = [
@@ -102,7 +86,6 @@ const RegistrationPage = () => {
 
   return (
     <div className="registration-page">
-      <ParticleBackground mousePosition={mousePosition} />
       <Header />
       
       <main className="registration-main">

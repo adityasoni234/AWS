@@ -113,6 +113,25 @@
   display: inline-block;
 }
 
+/* Footer Link Buttons */
+.footer-link-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.footer-link-btn:hover {
+  color: #8B5CF6;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
 /* Contact Section */
 .footer-contact-section {
   grid-column: span 1;
