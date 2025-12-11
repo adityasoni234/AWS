@@ -15,28 +15,28 @@ const speakers = [
     id: 1,
     name: 'Dr. Bishwajit Mohapatra',
     linkedin: 'https://in.linkedin.com/in/biswajitmohapatra',
-    title: 'Cloud Computing Expert',
+    title: 'Head of Customer Solutions and CIO Advisory, India and South Asia',
     image: '/images/BG_removed_speakers/Dr. Bishwajit Mohapatra.png'
   },
   {
     id: 2,
     name: 'Mr. Nilesh Vaghela',
     linkedin: 'https://in.linkedin.com/in/nilesh-vaghela',
-    title: 'AWS Machine Learning Specialist',
+    title: 'CEO at ElectroMech, CloudKida and AWS Community Hero',
     image: '/images/BG_removed_speakers/Nilesh Vaghela.png'
   },
   {
     id: 3,
     name: 'Mr. Ashish Patel',
     linkedin: 'https://in.linkedin.com/in/ashishkp',
-    title: 'DevOps & Cloud Solutions Expert',
+    title: 'Specialist Cloud Engineer III at Amazon Web Services',
     image: '/images/BG_removed_speakers/Ashish Patel.png'
   },
   {
     id: 4,
     name: 'Mr. Udit Parikh',
     linkedin: 'https://www.linkedin.com/in/parikhudit',
-    title: 'AWS Expert',
+    title: 'Specialist Cloud Engineer III at Amazon Web Services (AWS)',
     image: '/images/BG_removed_speakers/Udit_Parekh.png'
   }
 ];
