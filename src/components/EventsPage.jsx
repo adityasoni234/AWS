@@ -34,24 +34,10 @@ const speakers = [
   },
   {
     id: 4,
-    name: 'Mr. Dhaval Nagar',
-    linkedin: 'https://in.linkedin.com/in/dhavaln',
-    title: 'Cloud Architecture Expert',
-    image: '/images/BG_removed_speakers/Dhaval Nagar.png'
-  },
-  {
-    id: 5,
-    name: 'Mr. Nirmal Pathak',
-    linkedin: 'https://in.linkedin.com/in/nirmalpathak',
-    title: 'AWS Solutions Architect',
-    image: '/images/BG_removed_speakers/Nirmal Pathak.png'
-  },
-  {
-    id: 6,
-    name: 'Mr. Adit Modi',
-    linkedin: 'https://in.linkedin.com/in/adit-n-modi',
-    title: 'Cloud Computing Evangelist',
-    image: '/images/BG_removed_speakers/AditModi.png'
+    name: 'Mr. Udit Parikh',
+    linkedin: 'https://www.linkedin.com/in/parikhudit',
+    title: 'AWS Expert',
+    image: '/images/BG_removed_speakers/Udit_Parekh.png'
   }
 ];
 
